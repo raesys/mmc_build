@@ -35,7 +35,7 @@ def logout_request(request):
     return redirect('main:homepage')
 
 def login_request(request):
-    if request.user == 'POST':
+    if request.method == 'POST':
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')
