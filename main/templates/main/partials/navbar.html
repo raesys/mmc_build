@@ -1,0 +1,28 @@
+<!-- <div class="navbar-fixed"> -->
+  <nav class="lighten-1 fixed" role="navigation">
+    <div class="nav-wrapper container"><a id="logo-container" href="{% url 'main:homepage' %}" class="brand-logo">MentorMeCode</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/">Home</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="#">{{user.username|title}}</a></li>
+          <li><a href="#">Logout</a></li>
+        {% else %}
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Register</a></li>
+        {% endif %}
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="/">Home</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="/account">{{user.username|title}}</a></li>
+          <li><a href="#">Logout</a></li>
+        {% else %}
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Register</a></li>
+        {% endif %}
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+<!-- </div> -->

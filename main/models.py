@@ -5,7 +5,7 @@ from django.utils import timezone
 class Category(models.Model):
     title = models.CharField(max_length=200)
     summary = models.CharField(max_length=200)
-    slug = models.CharField(max_length=200, default=1)
+    slug = models.SlugField(max_length=200)
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -29,7 +29,7 @@ class Tutorial(models.Model):
     content = models.TextField()
     published = models.DateTimeField('date published', default=timezone.now)
     series = models.ForeignKey(Series, default=1, verbose_name='Series', on_delete=models.SET_DEFAULT)
-    slug = models.CharField(max_length=200, default=1)
+    slug = models.SlugField(max_length=200)
 
     def __str__(self):
         return self.title

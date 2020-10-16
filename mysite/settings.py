@@ -25,7 +25,7 @@ SECRET_KEY = 'k6l0oobiuehp%(ypp&cumf^^ub&dg8^bb&bk9oq$sl%88#%c^='
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
 
 # Application definition
@@ -120,6 +120,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Additional MMC
 
 TINYMCE_DEFAULT_CONFIG = {
     'height': 360,

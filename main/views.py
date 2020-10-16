@@ -5,10 +5,17 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from .forms import NewUserForm
+from django.contrib.auth.decorators import login_required
+
+
+def index(request):
+    return render(request, 'main/index.html')
 
 
 def homepage(request):
-    return render(request, 'main/categories.html', {'categories': Category.objects.all})
+    categories = Category.objects.all()
+    context = {'categories':categories}
+    return render(request, 'main/categories.html', context)
 
 
 def register(request):
@@ -17,22 +24,17 @@ def register(request):
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
-            login(request, user)
             messages.success(request, f"New account created: {username}")
+            login(request, user)
             return redirect('main:homepage')
 
         else:
             for msg in form.error_messages:
                 messages.error(request, f"{msg}: {form.error_messages[msg]}")
 
-    form = NewUserForm
-    return render(request, 'main/register.html', {'form': form})
+    form = NewUserForm()
+    return render(request, 'main/register.html', {'form':form})
 
-
-def logout_request(request):
-    logout(request)
-    messages.info(request, f"Logged out successfully")
-    return redirect('main:homepage')
 
 def login_request(request):
     if request.method == 'POST':
@@ -41,18 +43,25 @@ def login_request(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
-            if user is None:
+            if user is not None:
                 login(request, user)
-                messages.info(request, f"You are now logged in as {username}")
-                return redirect('main:homepage')
+                messages.success(request, f"You've are now logged in as {username}")
+                redirect('main:homepage')
             else:
-                messages.error(request, f"Invalid username or password.")
+                messages.error(request, "Invalid username or password.")
         else:
-            messages.error(request, f"Invalid username or password.")
+            messages.error(request, "Invalid username or password.")
     form = AuthenticationForm()
-    return render(request, 'main/login.html', {'form': form})
+    return render(request, 'main/login.html', {'form':form})
 
 
+def logout_request(request):
+    logout(request)
+    messages.info(request, "You've logged out successfully")
+    return redirect('main:homepage')
+
+
+# @login_required(login_url='main:login')
 def single_slug(request, single_slug):
     categories = [c.slug for c in Category.objects.all()]
     if single_slug in categories:
@@ -73,4 +82,6 @@ def single_slug(request, single_slug):
         this_tutorial_idx = list(tutorials_from_series).index(this_tutorial)
 
         return render(request, 'main/tutorial.html', {'tutorial': this_tutorial, 'sidebar': tutorials_from_series, 'this_tut_idx': this_tutorial_idx})
-    return HttpResponse(f"'{single_slug}' does not correspond to anything we know of!")
+    # return HttpResponse(f"'{single_slug}' does not correspond to anything we know of!")
+    return render(request, 'main/error.html')
+

@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+  <div class="container" align="left">
+    <img src="#">
+  </div>
+  <div class="container" align="left">
+    <h4>404 Snake says hi. Your Page was not found.</h4>
+    <p>This error has been logged and will be reviewed.</p> 
+    <p>Feel free to contact Raymond@MentorMeCode.com for help!</p>
+    <p><a class="btn btn-primary btn-lg" onclick="goBack()" role="button">Go Back!</a></p>
+  </div>
+
+{% endblock %}
+{% block script %}
+<script>
+    function goBack() {
+        window.history.back()
+    }
+</script>
+{% endblock %}
