@@ -18,6 +18,8 @@ class TutorialAdmin(admin.ModelAdmin):
         models.TextField: {'widget': TinyMCE()}
     }
 
+    prepopulated_fields = {'slug': ('title',)}
+
 
 admin.site.register(Category)
 admin.site.register(Series)
