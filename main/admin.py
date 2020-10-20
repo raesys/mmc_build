@@ -1,16 +1,20 @@
 from django.contrib import admin
-from .models import Category, Series, Tutorial
+from .models import Category, Guide
 
 from tinymce.widgets import TinyMCE 
 from django.db import models
 
 
-class TutorialAdmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+
+
+class GuideAdmin(admin.ModelAdmin):
 
     fieldsets = [
-        ('Title/date', {'fields': ['title', 'published']}),
+        ('Title/date', {'fields': ['title', 'published_date']}),
         ('URL', {'fields': ['slug']}),
-        ('Series', {'fields': ['series']}),
+        ('Category', {'fields': ['category']}),
         ('Content', {'fields': ['content']})
     ]
 
@@ -21,6 +25,5 @@ class TutorialAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 
-admin.site.register(Category)
-admin.site.register(Series)
-admin.site.register(Tutorial, TutorialAdmin)
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Guide, GuideAdmin)
