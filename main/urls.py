@@ -5,7 +5,8 @@ app_name = 'main'
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
-    path('logout/', views.logout_request, name='logout'),
-    path('login/', views.login_request, name='login'),
+    path('categories/', views.categories, name='categories'),
+    path('categories/<slug:slug>/', views.category_guides, name='category_guides'),
+    path('guides/<slug:slug>/', views.specific_guide, name='specific_guide'),
 ]
 
