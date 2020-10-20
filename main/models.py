@@ -20,6 +20,10 @@ class Guide(models.Model):
     published_date = models.DateTimeField(default=timezone.now)
     category = models.ForeignKey(Category, default=1, on_delete=models.SET_DEFAULT)
     slug = models.SlugField(max_length=200)
+    active = models.BooleanField(default=False)
+
+    def is_active(self):
+        self.active = True
 
     def __str__(self):
         return self.title
