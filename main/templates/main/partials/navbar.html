@@ -4,10 +4,10 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="/">Home</a></li>
         {% if user.is_authenticated %}
-          <li><a href="#">{{user.username|title}}</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="{% url 'accounts:dashboard' %}">Dashboard</a></li>
+          <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
         {% else %}
-          <li><a href="#">Login</a></li>
+          <li><a href="{% url 'accounts:login' %}">Login</a></li>
           <!-- <li><a href="#">Register</a></li> -->
         {% endif %}
       </ul>
@@ -15,10 +15,10 @@
       <ul id="nav-mobile" class="sidenav">
         <li><a href="/">Home</a></li>
         {% if user.is_authenticated %}
-          <li><a href="/account">{{user.username|title}}</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="{% url 'accounts:dashboard' %}">Dashboard</a></li>
+          <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
         {% else %}
-          <li><a href="#">Login</a></li>
+          <li><a href="{% url 'accounts:login' %}">Login</a></li>
           <!-- <li><a href="#">Register</a></li> -->
         {% endif %}
       </ul>

@@ -1,0 +1,46 @@
+<head>
+  {% load static %}
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>MentorMeCode - Login</title>
+
+  <!-- CSS  -->
+  <!-- Prism CSS -->
+  <link href="{% static 'tinymce/css/prism.css' %}" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'main/css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+<!-- Compiled and minified CSS -->
+  <link href="{% static 'main/css/materialize.css' %}" rel="stylesheet" media="screen,projection">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+<body>
+
+
+  <div class="container">
+    <br><br><br>
+    {% include 'main/partials/messaging.html' %}
+    {% block content %}
+
+        <div class="container">
+            <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+                <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Login</button>
+            </form>
+            Don't have an account? <a href="#"><strong>register here</strong></a>!
+        </div>
+    {% endblock %}
+    <br><br>
+  </div>
+
+  <!--  Scripts-->
+  <!-- Prism JS -->
+  <script src="{% static 'tinymce/js/prism.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <!-- <script src="{% static 'main/js/materialize.js' %}"></script> -->
+  <script src="{% static 'main/js/init.js' %}"></script>
+  <script>M.AutoInit();</script>
+  {% block script %}{% endblock %}
+  </body>
+</html>
