@@ -3,12 +3,12 @@ from .models import Category, Guide
 from django.contrib.auth.decorators import login_required
 
 
-@login_required
+@login_required(login_url='accounts:login')
 def homepage(request):
     return render(request, 'main/homepage.html')
 
 
-@login_required
+@login_required(login_url='accounts:login')
 def categories(request):
     categories = Category.objects.all()
     context = {
@@ -17,7 +17,7 @@ def categories(request):
     return render(request, 'main/categories.html', context)
 
 
-@login_required
+@login_required(login_url='accounts:login')
 def category_guides(request, slug):
     category = get_object_or_404(Category, slug=slug)
     category_guides = category.guide_set.all()
@@ -28,7 +28,7 @@ def category_guides(request, slug):
     return render(request, 'main/category_guides.html', context)
     
 
-@login_required
+@login_required(login_url='accounts:login')
 def specific_guide(request, slug):
     guide = get_object_or_404(Guide, slug=slug)
 

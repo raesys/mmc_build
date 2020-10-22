@@ -2,17 +2,38 @@
 
 {% block content %}
 <h3>Your Dashboard:</h3>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+<hr>
+<hr>
+<div>
+    <h5>Your Profile:</h5>
+    {% if user_profile is None %}
+        <p>You have no profile yet. Click on the link below to create it.</p>
+    {% else %}
+        <ul>
+            <li><strong>Username:</strong> {{ user_profile.user }}</li>
+            <li><strong>Full name:</strong> {{ user_profile.first_name }} {{ user_profile.last_name }}</li>
+            <li><strong>Email:</strong> {{ user_profile.email }}</li>
+            <li><strong>Phone:</strong> {{ user_profile.phone }}</li>
+            <li><strong>Interest:</strong> {{ user_profile.interest }}</li>
+            <li><strong>Code Goal:</strong> {{ user_profile.code_goal }}</li>
+        </ul>
+    {% endif %}
+    <button><a href="{% url 'accounts:update_profile' %}">Update Profile</a></button>
+</div>
+<hr>
+<div>
+    <h5>Your Projects:</h5>
+    {% if user_projects %}
+    <ol>
+        {% for obj in user_projects %}
+            <li>{{ obj.title }}</li>
+        {% endfor %}
+    </ol>
+    {% else %}
+        <p>You have no projects yet. Click on the link below to create some.</p>
+    {% endif %}
+    <button><a href="#">Add Projects</a></button>
+</div>
+<hr>
+
 {% endblock %}

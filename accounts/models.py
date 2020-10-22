@@ -3,13 +3,13 @@ from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='username')
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50)
-    phone = models.CharField(max_length=15)
-    interest = models.CharField(max_length=200)
-    code_goal = models.TextField()
+    email = models.EmailField(max_length=50, verbose_name='your email', help_text='Enter your active email address')
+    phone = models.CharField(max_length=15, verbose_name='your phone number')
+    interest = models.CharField(max_length=200, verbose_name='your interests')
+    code_goal = models.TextField(verbose_name='your coding goal')
 
     def __str__(self):
         return self.user.username
