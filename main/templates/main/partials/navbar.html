@@ -6,6 +6,7 @@
         {% if user.is_authenticated %}
           <li><a href="{% url 'accounts:dashboard' %}">Dashboard</a></li>
           <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
+          <li><a href="{% url 'accounts:message_mentor' %}">Message</a></li>
         {% else %}
           <li><a href="{% url 'accounts:login' %}">Login</a></li>
           <!-- <li><a href="#">Register</a></li> -->
@@ -16,6 +17,7 @@
         <li><a href="/">Home</a></li>
         {% if user.is_authenticated %}
           <li><a href="{% url 'accounts:dashboard' %}">Dashboard</a></li>
+          <li><a href="{% url 'accounts:message_mentor' %}">Message</a></li>
           <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
         {% else %}
           <li><a href="{% url 'accounts:login' %}">Login</a></li>

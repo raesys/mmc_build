@@ -4,7 +4,7 @@ from django.contrib.auth import logout, authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Project
-from .forms import ProfileForm
+from .forms import ProfileForm, ChatForm
 
 
 def login_request(request):
@@ -63,6 +63,7 @@ def update_profile(request):
         form = ProfileForm(data=request.POST, instance=user_profile)
         if form.is_valid():
             form.save()
+            messages.info(request, "You have successfully updated your profile")
             return redirect('accounts:dashboard')
     else:
         form = ProfileForm(instance=user_profile)
@@ -72,3 +73,23 @@ def update_profile(request):
     }
     return render(request, 'accounts/update_profile.html', context)
 
+
+@login_required(login_url='accounts:login')
+def message_mentor(request):
+    if request.method == 'POST':
+        form = ChatForm(data=request.POST)
+        if form.is_valid():
+            chat = form.save(commit=False)
+            chat.author = request.user
+            chat.save()
+            messages.info(request, "Your message has been sent.")
+            return redirect('accounts:dashboard')
+        else:
+            messages.error(request, "You have missed out required fields")
+    else:
+        form = ChatForm()
+     
+    context = {
+        'form': form
+    }
+    return render(request, 'accounts/message_mentor.html', context)

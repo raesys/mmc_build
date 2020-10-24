@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile
+from .models import Profile, Chat
 
 
 class ProfileForm(forms.ModelForm):
@@ -11,4 +11,11 @@ class ProfileForm(forms.ModelForm):
         # fields = '__all__'
         # exclude = ['user']
 
+
+class ChatForm(forms.ModelForm):
+    class Meta:
+        model = Chat
+        fields = ['subject', 'message']
+
+        
         

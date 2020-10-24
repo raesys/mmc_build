@@ -25,3 +25,14 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+
+
+class Chat(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    subject = models.CharField(max_length=100)
+    message = models.TextField()
+
+    def __str__(self):
+        return self.subject
+

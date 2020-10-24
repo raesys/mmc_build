@@ -1,12 +1,12 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<h3>Update Your Profile:</h3>
+<h3>Message Your Mentor:</h3>
 <br>
 <div>
     <form method="POST" action=".">{% csrf_token %}
         {{ form.as_p }}
-        <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Update</button>
+        <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Send Message</button>
     </form>
     <button style="background-color:#F4EB16; color:red" class="btn btn-outline-info" type="submit"><a href="{% url 'accounts:dashboard' %}">Cancel</a></button>
 </div>

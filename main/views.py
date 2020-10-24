@@ -41,3 +41,4 @@ def specific_guide(request, slug):
     }
     return render(request, 'main/specific_guide.html', context)
     
+

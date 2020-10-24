@@ -18,22 +18,27 @@
             <li><strong>Code Goal:</strong> {{ user_profile.code_goal }}</li>
         </ul>
     {% endif %}
-    <button><a href="{% url 'accounts:update_profile' %}">Update Profile</a></button>
+    <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info"><a href="{% url 'accounts:update_profile' %}">Update Profile</a></button>
 </div>
+<br>
 <hr>
 <div>
     <h5>Your Projects:</h5>
-    {% if user_projects %}
+    {% for obj in user_projects %}
     <ol>
-        {% for obj in user_projects %}
-            <li>{{ obj.title }}</li>
-        {% endfor %}
+        <li>{{ obj.title }}</li>
     </ol>
-    {% else %}
+    {% empty %}
         <p>You have no projects yet. Click on the link below to create some.</p>
-    {% endif %}
-    <button><a href="#">Add Projects</a></button>
+    {% endfor %}
+    <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info"><a href="#">Add Projects</a></button>
 </div>
+<br>
 <hr>
-
+<div>
+    <h5>Your Message Board:</h5>
+    <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info"><a href="{% url 'accounts:message_mentor' %}">Send Message</a></button>
+</div>
+<br>
+<hr>
 {% endblock %}
