@@ -39,12 +39,11 @@ def logout_request(request):
 @login_required(login_url='accounts:login')
 def dashboard(request):
     current_user = request.user
-    # user_profile = get_object_or_404(Profile, user=current_user)
     try:
-        user_profile = Profile.objects.get(user=current_user)
+        user_profile = current_user.profile
     except Profile.DoesNotExist:
         user_profile = None
-    user_projects = Project.objects.filter(created_by=current_user)
+    user_projects = current_user.project_set.all()
 
     context = {
         'user_profile': user_profile,

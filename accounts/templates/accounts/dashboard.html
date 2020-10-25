@@ -18,7 +18,7 @@
             <li><strong>Code Goal:</strong> {{ user_profile.code_goal }}</li>
         </ul>
     {% endif %}
-    <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info"><a href="{% url 'accounts:update_profile' %}">Update Profile</a></button>
+    <a class="btn btn-outline-primary" href="{% url 'accounts:update_profile' %}">Update Profile<i class="material-icons right">update</i></a>
 </div>
 <br>
 <hr>
@@ -31,13 +31,13 @@
     {% empty %}
         <p>You have no projects yet. Click on the link below to create some.</p>
     {% endfor %}
-    <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info"><a href="#">Add Projects</a></button>
+    <a class="btn btn-outline-primary" href="#">Add Projects<i class="material-icons right">add_to_queue</i></a>
 </div>
 <br>
 <hr>
 <div>
     <h5>Your Message Board:</h5>
-    <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info"><a href="{% url 'accounts:message_mentor' %}">Send Message</a></button>
+    <a class="btn btn-outline-primary" href="{% url 'accounts:message_mentor' %}">Send Message<i class="material-icons right">send</i></a>
 </div>
 <br>
 <hr>

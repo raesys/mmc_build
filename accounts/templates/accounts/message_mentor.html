@@ -6,9 +6,13 @@
 <div>
     <form method="POST" action=".">{% csrf_token %}
         {{ form.as_p }}
-        <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Send Message</button>
+        <p>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Send
+                <i class="material-icons right">send</i>
+            </button>   
+            <a style="background-color: red" class="btn btn-outline-primary" href="{% url 'accounts:dashboard' %}">Cancel<i class="material-icons right">cancel</i></a>
+        </p>
     </form>
-    <button style="background-color:#F4EB16; color:red" class="btn btn-outline-info" type="submit"><a href="{% url 'accounts:dashboard' %}">Cancel</a></button>
 </div>
 
 {% endblock %}
