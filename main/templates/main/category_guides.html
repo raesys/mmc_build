@@ -14,6 +14,10 @@
                     </div>
                 </a>
             </div>
+        {% empty %}
+            <div class="container">
+                <p>No content here</p>
+            </div>
         {% endfor %}
     </div>
 {% endblock %}
