@@ -2,7 +2,7 @@
   {% load static %}
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>MentorMeCode - Login</title>
+  <title>{% block title %} MentorMeCode {% endblock %}</title>
 
   <!-- CSS  -->
   <!-- Prism CSS -->
@@ -13,26 +13,20 @@
   <link href="{% static 'main/css/materialize.css' %}" rel="stylesheet" media="screen,projection">
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  {{ form.media }}
 </head>
 <body>
-
+  {% include 'partials/navbar.html' %}
 
   <div class="container">
-    <br><br><br>
-    {% include 'main/partials/messaging.html' %}
+    <br>
+    {% include 'partials/messaging.html' %}
     {% block content %}
-
-        <div class="container">
-            <form method="POST">
-            {% csrf_token %}
-            {{form.as_p}}
-                <button style="background-color:#F4EB16; color:blue" class="btn btn-outline-info" type="submit">Login</button>
-            </form>
-            Don't have an account? <a href="#"><strong>register here</strong></a>!
-        </div>
     {% endblock %}
     <br><br>
   </div>
+
+  {% include 'partials/footer.html' %}
 
   <!--  Scripts-->
   <!-- Prism JS -->

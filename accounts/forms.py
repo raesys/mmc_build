@@ -1,5 +1,6 @@
 from django import forms
 from .models import Profile, Chat
+from tinymce import TinyMCE 
 
 
 class ProfileForm(forms.ModelForm):
